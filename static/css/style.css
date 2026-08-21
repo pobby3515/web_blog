@@ -663,6 +663,9 @@ body {
 }
 
 .skill-tag i {
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
     color: var(--primary-light);
 }
 
@@ -850,6 +853,13 @@ body {
     background: linear-gradient(135deg, #831843, #500724);
 }
 
+.project-img-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    padding: 16px;
+}
+
 .project-card:hover .project-img-placeholder {
     transform: scale(1.05);
 }
@@ -871,8 +881,15 @@ body {
 
 .project-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    margin-bottom: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+}
+
+.project-subtitle {
+    font-size: 0.95rem;
+    color: var(--secondary);
+    font-weight: 500;
+    margin-bottom: 12px;
 }
 
 .project-desc {
