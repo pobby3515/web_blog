@@ -170,41 +170,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    /* ==========================================
-       6. Number Counting Animation
-       ========================================== */
-    const statNumbers = document.querySelectorAll('.stat-number');
-    let animated = false;
-
-    function animateStats() {
-        const statsSection = document.querySelector('.about-stats');
-        if (!statsSection) return;
-
-        const sectionPos = statsSection.getBoundingClientRect().top;
-        const screenPos = window.innerHeight / 1.2;
-
-        if (sectionPos < screenPos && !animated) {
-            animated = true;
-            statNumbers.forEach(num => {
-                const target = parseInt(num.getAttribute('data-target'));
-                let count = 0;
-                const speed = 2000 / target;
-
-                const updateCount = () => {
-                    count++;
-                    num.textContent = count + '+';
-                    if (count < target) {
-                        setTimeout(updateCount, speed);
-                    } else {
-                        num.textContent = target + (target === 99 ? '%' : '+');
-                    }
-                };
-                updateCount();
-            });
-        }
-    }
-
-    window.addEventListener('scroll', animateStats);
-    animateStats();
 });
