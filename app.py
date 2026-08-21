@@ -1,20 +1,15 @@
 import os
 from flask import Flask, render_template, request, jsonify
 from flask_mail import Mail, Message
-from dotenv import load_dotenv
-
-# 載入 .env 環境變數
-load_dotenv()
-
 app = Flask(__name__)
 
 # Flask-Mail 郵件伺服器設定
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_DEFAULT_SENDER', '個人網站聯絡系統 <pobby3515@gmail.com>')
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', '個人網站聯絡系統 <pobby3515@gmail.com>')
 
 mail = Mail(app)
 
@@ -44,7 +39,7 @@ def contact_api():
         # 若已設定 Gmail 密碼，則發送 Email 通知到指定信箱
         mail_username = app.config['MAIL_USERNAME']
         mail_password = app.config['MAIL_PASSWORD']
-        recipient = os.environ.get('MAIL_RECIPIENT', mail_username)
+        recipient = os.getenv('MAIL_RECIPIENT', mail_username)
         
         if mail_username and mail_password and "your_16_digit" not in mail_password:
             msg = Message(
@@ -80,5 +75,5 @@ def health_check():
     return jsonify({"status": "healthy", "service": "flask-portfolio"}), 200
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.getenv('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
