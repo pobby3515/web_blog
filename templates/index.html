@@ -269,10 +269,27 @@
                         <div class="project-info">
                             <h3 class="project-title">AI 影像標記平台</h3>
                             <h4 class="project-subtitle">人機協作，讓系統做初稿，人只處理關鍵判斷</h4>
-                            <p class="project-desc">
-                                用一句話說出你要找什麼（例如「找出戴安全帽的工人」），系統自動定位物件並產生輪廓； 只有低信心的結果會標紅送人審核。修正會回饋成訓練樣本，越標越準。
-                                支援從網頁工作台操作，也支援直接用 LINE 傳照片。
-                            </p>
+                            <div class="project-desc">
+                                <p class="tech-title">💡 概述</p>
+                                <p>用一句話說出你要找什麼（例如「找出戴安全帽的工人」），系統自動定位物件並產生輪廓；只有 AI
+                                    不確定的部分，才會標示出來讓人審核。修正後會回饋成訓練樣本，越標越準。支援從網頁工作台操作，也支援直接用
+                                    LINE 傳照片。</p>
+                                <p class="tech-title">🛠️ 主要負責技術</p>
+                                <ul class="project-tech-list">
+                                    <li><strong>多模型協同架構｜</strong>整合 YOLO-World（零樣本指令偵測與自適應 Letterbox 演算法）、MobileSAM /
+                                        DINOv2（高精細去背）並基於 PyTorch
+                                        框架進行 YOLOv26x-seg 線上微調。</li>
+                                    <li><strong>自適應動態 Resize｜</strong>針對輸入影像極端尺寸導致 YOLO-World 漏抓問題，開發自適應動態 Resize
+                                        策略（小圖補邊不放大、大圖開放至 1280）大幅提升邊界檢測率。
+                                    </li>
+                                    <li><strong>單一分類物件特徵強化｜</strong>針對單一物件運用 DINOv2 提取深層向量，結合餘弦相似度與 KNN 演算法強化特徵分類精度。
+                                    </li>
+                                    <li><strong>LLM 語意標準化 (RAG)｜</strong>前端串接 Gemini API 解決使用者多樣化自然語言指令的語意解析，並建立 RAG
+                                        檢索機制，標準化語意。</li>
+                                    <li><strong>容器化部署與雲端架構｜</strong>後端基於 Flask API 與 Docker 容器化，部署至 GCP Cloud Run /
+                                        Cloud SQL 實現 Serverless 架構。</li>
+                                </ul>
+                            </div>
                             <div class="project-tags">
                                 <span>Python</span>
                                 <span>Flask</span>
