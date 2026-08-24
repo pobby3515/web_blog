@@ -18,7 +18,6 @@ web/
 │   ├── js/
 │   │   └── main.js         # 前端互動 (打字特效、表單 AJAX)
 │   └── images/             # 圖片素材 (個人照、Favicon)
-├── .env.example            # 環境變數範本檔
 └── README.md               # 專案說明文件
 ```
 
